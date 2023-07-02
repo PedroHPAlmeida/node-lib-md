@@ -8,12 +8,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/alura-cursos/2708-node-lib-md.git"
+        "url": "git+https://github.com/PedroHPAlmeida/node-lib-md.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/alura-cursos/2708-node-lib-md/issues"
+        "url": "https://github.com/PedroHPAlmeida/node-lib-md/issues"
     }
 }
