@@ -1,34 +1,22 @@
 import fs from "fs";
 import chalk from "chalk";
 
+function extractLinks(text) {
+  const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)/gm;
+  const matches = [...text.matchAll(regex)];
+  return matches.map((match) => {
+    return { [match[1]]: match[2] };
+  });
+}
+
 // Assincrono async
 async function getFile(path) {
   try {
-    const content = await fs.promises.readFile(path, "utf-8");
-    console.log(chalk.green(content));
+    return await fs.promises.readFile(path, "utf-8");
   } catch (error) {
     throw new Error(chalk.red(error));
   }
 }
 
-// Assincrono then
-// function getFile(path) {
-//   fs.promises
-//     .readFile(path, "utf-8")
-//     .then((content) => console.log(chalk.green(content)))
-//     .catch((error) => {
-//       throw new Error(chalk.red(error));
-//     });
-// }
-
-// Sincrono
-// function getFile(path) {
-//   fs.readFile(path, "utf-8", (error, content) => {
-//     if (error) {
-//       throw new Error(chalk.red(error));
-//     }
-//     console.log(chalk.green(content));
-//   });
-// }
-
-getFile("./files/text.md");
+const text = await getFile("./files/text.md");
+console.log(extractLinks(text));
